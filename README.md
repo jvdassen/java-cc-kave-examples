@@ -6,7 +6,7 @@ mvn package
 ```
 ## Run the examples
 
-Supply the project directory and where the KaVE datasets can be found. Not the ```/``` at the end of `BASE_DIR`.
+Supply the project directory and where the KaVE datasets can be found. Note the ```/``` at the end of `BASE_DIR`.
 
 The examples should be run with at least 8gb of memory.
 
