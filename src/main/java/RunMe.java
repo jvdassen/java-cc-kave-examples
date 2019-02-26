@@ -30,7 +30,7 @@ import examples.rsse.calls.BMNMining;
 public class RunMe {
 
 	// private static final String dirRoot = "/path/to/folder/";
-	private static final String dirRoot = "/Users/seb/pbn-mining-testfolder/";
+	private static final String dirRoot = System.getenv("BASE_DIR");
 
 	/*
 	 * download the interaction data and unzip it into the root of this project (at
@@ -38,14 +38,15 @@ public class RunMe {
 	 * includes a bunch of folders that have dates as names and that contain .zip
 	 * files.
 	 */
-	public static String dirEvents = dirRoot + "someevents/";
+	public static String dirEvents = dirRoot + System.getenv("EVENTS_SUBDIR");
 
 	/*
 	 * download the context data and follow the same instructions as before.
 	 */
-	public static String dirContexts = dirRoot + "somecontexts/";
+	public static String dirContexts = dirRoot + System.getenv("CONTEXTS_SUBDIR");
 
 	public static void main(String[] args) {
+		printMemInfo();
 		init();
 
 		// examples for BASIC DATA READING
@@ -77,13 +78,16 @@ public class RunMe {
 	}
 
 	private static void init() {
+		JsonUtilsCcKaveRsseCalls.registerJsonAdapters();
+	}
+	
+	private static void printMemInfo() {
 		// Logger.setDebugging(true); // might provide helpful output
 		Logger.setPrinting(true);
 
 		double gb = 1024 * 1024 * 1024;
 		log("Make sure that your memory limit is increased, using at least 8GB is recommended to process the KaVE datasets...  (-Xmx8G)");
 		log("Current max. memory: %.1f GB", Runtime.getRuntime().maxMemory() / gb);
-
-		JsonUtilsCcKaveRsseCalls.registerJsonAdapters();
+		log("Looking for contexts in %s and events in %s ", dirEvents, dirContexts);
 	}
 };
