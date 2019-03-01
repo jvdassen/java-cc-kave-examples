@@ -14,6 +14,8 @@ The examples should be run with at least 8gb of memory.
 export BASE_DIR=/home/user/path/to/project/
 export EVENTS_SUBDIR=datasets/Events_123456/
 export CONTEXTS_SUBDIR=datasets/Contexts_123456/
+export JVM_MEMORY=10G
 
-java -Xmx10G -cp target/examples-0.0.1-SNAPSHOT.jar RunMe 
+
+java -Xmx${JVM_MEMORY} -cp target/examples-0.0.1-SNAPSHOT.jar RunMe 
 ```
