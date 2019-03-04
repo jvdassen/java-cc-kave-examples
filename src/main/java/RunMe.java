@@ -44,7 +44,14 @@ public class RunMe {
 	 * download the context data and follow the same instructions as before.
 	 */
 	public static String dirContexts = dirRoot + System.getenv("CONTEXTS_SUBDIR");
-
+	
+	/*
+	 * Check if the mining step can be skipped
+	 */
+	
+	public static boolean skipMining = "TRUE".equals(System.getenv("SKIP_MINING"));
+	
+	
 	public static void main(String[] args) {
 		printMemInfo();
 		init();
@@ -70,7 +77,9 @@ public class RunMe {
 		// Invoke this mining step to build models from scratch. Once this has been
 		// completed, you will find all models in the "dirBmnModels" folder and you can
 		// comment it out to significantly speed-up future executions.
-		new BMNMining(opts, dirContexts, dirSortedUsages, dirBmnModels).run();
+		if(!skipMining) {
+			new BMNMining(opts, dirContexts, dirSortedUsages, dirBmnModels).run();
+		}
 
 		// The evaluation assumes that you have already mined (or downloaded) BMN models
 		// and that they are contained in the "dirBmnModels" folder.

@@ -16,6 +16,8 @@ export EVENTS_SUBDIR=datasets/Events_123456/
 export CONTEXTS_SUBDIR=datasets/Contexts_123456/
 export JVM_MEMORY=10G
 
+# Optionally variable to skip the mining step
+export SKIP_MINING=TRUE
 
 java -Xmx${JVM_MEMORY} -cp target/examples-0.0.1-SNAPSHOT.jar RunMe 
 ```
